@@ -69,3 +69,54 @@ Part 1: Discussion
 
 # Parts 2 through 5:
 # Create your classes and class methods
+
+# Part 2
+class Student(object): 
+    """Student class, which needs the first name, last name, and address."""
+
+    def __init__(self, first_name, last_name, address):
+        """Provide the first name, last name, and address for this dunder init method."""
+        
+        self.first_name = first_name
+        self.last_name = last_name
+        self.address = address
+
+    def info(self):
+        """Returns a dictionary of info on this student"""
+        
+        student_info = {'first name' : self.first_name, 
+                        'second name' : self.last_name, 
+                        'address' : self.address,
+                        }
+        return student_info
+
+
+
+class Question(object):
+    """Question class, which needs question and correct answer."""
+
+    def __init__(self, question, correct_answer):
+        """Provide an exam question and the correct answer."""
+        
+        self.question = question
+        self.correct_answer = correct_answer
+
+    def question_info(self):
+        """The question and correct answer is stored in the test_info dictionary."""
+
+        test_info = {'question' : self.question, 
+                    'correct_answer' : self.correct_answer,
+                    }
+
+        return test_info
+
+
+
+class Exam(object):
+    """Exam class needs the exam name and a list of questions."""
+
+    def __init__(self, name, questions):
+        """Requires name, and questions information."""
+        self.name = name
+        self.questions = questions
+        
