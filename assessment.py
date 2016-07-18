@@ -66,7 +66,6 @@ Part 1: Discussion
 
 """
 
-from random import choice
 # Parts 2 through 5:
 # Create your classes and class methods
 
@@ -80,6 +79,7 @@ class Student(object):
         self.first_name = first_name
         self.last_name = last_name
         self.address = address
+        self.score = 0
 
 
 class Question(object):
@@ -125,3 +125,26 @@ class Exam(object):
 
         return score
 
+
+
+def take_test(exam, student):
+    """Takes an exam and a student, administers the test, and assigns the scores back to the student."""
+    student_score = exam.administer()
+    student.score = student_score
+
+def example():
+    """Runs a sample set of questions."""
+    exam = Exam('final')
+
+    exam.add_question('what day is it?', 'a weekday')
+    exam.add_question('what is your favorite color?', 'blue')
+    exam.add_question('who is the best?', 'balloonicorn')
+    exam.add_question('what time is hw due on frodo?', '9pm')
+    exam.add_question('where is most magical place on earth?', 'disneyland')
+
+    student = Student('bob', 'dole', '123 main st')
+
+    take_test(exam, student)
+    print "your score is %i" % (student.score)
+
+    
