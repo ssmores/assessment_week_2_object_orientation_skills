@@ -66,11 +66,11 @@ Part 1: Discussion
 
 """
 
-
+from random import choice
 # Parts 2 through 5:
 # Create your classes and class methods
 
-# Part 2
+
 class Student(object): 
     """Student class, which needs the first name, last name, and address."""
 
@@ -80,16 +80,6 @@ class Student(object):
         self.first_name = first_name
         self.last_name = last_name
         self.address = address
-
-    def info(self):
-        """Returns a dictionary of info on this student"""
-        
-        student_info = {'first name' : self.first_name, 
-                        'second name' : self.last_name, 
-                        'address' : self.address,
-                        }
-        return student_info
-
 
 
 class Question(object):
@@ -101,22 +91,37 @@ class Question(object):
         self.question = question
         self.correct_answer = correct_answer
 
-    def question_info(self):
-        """The question and correct answer is stored in the test_info dictionary."""
+    def ask_and_evaluation(self):
+        """Prompts the uswer with a question, and validates against result"""
 
-        test_info = {'question' : self.question, 
-                    'correct_answer' : self.correct_answer,
-                    }
-
-        return test_info
-
+        print self.question
+        answer_to_evaluate = raw_input("what is your answer? > ")
+        return answer_to_evaluate == self.correct_answer
 
 
 class Exam(object):
     """Exam class needs the exam name and a list of questions."""
 
-    def __init__(self, name, questions):
+    def __init__(self, name):
         """Requires name, and questions information."""
         self.name = name
-        self.questions = questions
-        
+        self.questions = []
+
+
+    def add_question(self, question, correct_answer):
+        """Uses the Question class to create another question/answer to add"""
+
+        question1 = Question(question, correct_answer)
+        self.questions.append(question1)
+
+    def administer(self):
+        """Asks all questions, and returns total of correct answers."""
+
+        score = 0
+
+        for item in self.questions:
+            if item.ask_and_evaluation() == True:
+                score += 1
+
+        return score
+
